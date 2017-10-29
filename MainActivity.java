@@ -19,9 +19,11 @@ public class MainActivity extends AppCompatActivity {
 
     private Spinner spinner;
     private TextView text;
-    private static final String MY_PREFERENCES = "MyWeatherPreferences";
-    private static final String MY_START_CITY = "City";
+    private String[] weatherArray;
+    public static final String MY_PREFERENCES = "MyWeatherPreferences";
+    public static final String MY_START_CITY = "City";
     private SharedPreferences myPreferences;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +61,8 @@ public class MainActivity extends AppCompatActivity {
 
         text = (TextView) findViewById(R.id.weather_text);
         text.setText("");
+
+        weatherArray = getResources().getStringArray(R.array.weather_list);
         Button button = (Button) findViewById(R.id.select_button);
         button.setOnClickListener(new MyOnClickListener());
 
@@ -70,12 +74,10 @@ public class MainActivity extends AppCompatActivity {
         public void onClick(View view) {
             if (view.getId() == R.id.select_button) {
                 int idSelect = spinner.getSelectedItemPosition();
-                String[] cityArray = getResources().getStringArray(R.array.city_list);
-                text.setText(cityArray[idSelect]);
+                text.setText(weatherArray[idSelect]);
             }
         }
     }
-
 }
 
 
